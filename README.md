@@ -15,3 +15,11 @@
 
 * [**access**](https://www.geeksforgeeks.org/access-command-in-linux-with-examples/)
 * [**execve**](https://linuxhint.com/c-execve-function-usage/)
+* [**dup**](https://www.geeksforgeeks.org/dup-dup2-linux-system-call/)
+* [**dup2**](https://www.geeksforgeeks.org/dup-dup2-linux-system-call/)
+* [**fork**](https://www.geeksforgeeks.org/fork-system-call/)
+* [**exit**](http://manpagesfr.free.fr/man/man3/exit.3.html)
+* [**pipe**](http://manpagesfr.free.fr/man/man2/pipe.2.html)
+* [**write**](http://manpagesfr.free.fr/man/man2/write.2.html)
+
+
