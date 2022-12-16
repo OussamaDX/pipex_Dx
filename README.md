@@ -14,3 +14,4 @@
 **in this project we are allowed to use the following functions:**
 
 * [**access**](https://www.geeksforgeeks.org/access-command-in-linux-with-examples/)
+* [**execve](https://linuxhint.com/c-execve-function-usage/)
