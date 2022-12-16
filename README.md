@@ -372,17 +372,3 @@ script.sh
 hello world
 ```
 
-## Compiling and running
----
-
-* **for mandatory part** :
-
-Run <mark>make</mark>.
-
-![image](assets/pipex_manda.png)
-
-```bash
-$ make
-$ ./pipex file1 cmd1 cmd2 file2
-```
-
