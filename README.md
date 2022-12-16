@@ -1,6 +1,6 @@
 # pipex_Dx
 # Project Overview
-
+# please read the subject before started
 
 
 # What is a Pipe in Linux?
@@ -11,7 +11,7 @@
 
 ## Sources
 ---
-**in this project we are allowed to use the following functions:**
+**check this functions before start:**
 
 * [**access**](https://www.geeksforgeeks.org/access-command-in-linux-with-examples/)
 * [**execve**](https://linuxhint.com/c-execve-function-usage/)
