@@ -1,2 +1,7 @@
 //in this i put all resources (videos and articles and playlists .....)
 
+
+what is pid_t ? 
+      The pid_t data type represents process IDs. You can get the process ID of a process by calling getpid. The function getppid returns the process ID of the parent of the current process (this is also known as the parent process ID). Your program should include the header files `unistd.h' and `sys/types.h' to use these functions.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
