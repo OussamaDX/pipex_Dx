@@ -1,6 +1,26 @@
 //in this i put all resources (videos and articles and playlists .....)
 
 
+
+// each cmd needs a stdin (input) and returns an output (to stdout)
+   
+    infile                                             outfile
+as stdin for cmd1                                 as stdout for cmd2            
+       |                        PIPE                        ↑
+       |           |---------------------------|            |
+       ↓             |                       |              |
+      cmd1   -->    end[1]       ↔       end[0]   -->     cmd2           
+                     |                       |
+            cmd1   |---------------------------|  end[0]
+           output                             reads end[1]
+         is written                          and sends cmd1
+          to end[1]                          output to cmd2
+       (end[1] becomes                      (end[0] becomes 
+        cmd1 stdout)                           cmd2 stdin)
+        
+        
+        
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 what is pid_t ? 
       The pid_t data type represents process IDs. You can get the process ID of a process by calling getpid. The function getppid returns the process ID of the parent of the current process (this is also known as the parent process ID). Your program should include the header files `unistd.h' and `sys/types.h' to use these functions.
 
