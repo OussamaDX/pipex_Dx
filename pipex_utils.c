@@ -6,7 +6,7 @@
 /*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:45:18 by ooussaad          #+#    #+#             */
-/*   Updated: 2022/12/18 21:31:17 by ooussaad         ###   ########.fr       */
+/*   Updated: 2022/12/19 22:28:05 by ooussaad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,26 @@ void excute_cmd1(char **argv,char **envp)
 	}
 	if (execve(buf[i], cmd, envp) == -1)
 		error();
-	execve(buf[i], cmd, envp);
+	// execve(buf[i], cmd, envp);
+}
+
+void excute_cmd2(char **argv,char **envp)
+{
+	int i = 0;
+	char **cmd = ft_split (argv[3],' ');
+	char **buf = find_path(envp);
+	while (buf[i])
+	{
+		buf[i] = ft_strjoin(buf[i], cmd[0]);
+			if (access(buf[i], X_OK) == 0)
+				break;
+			else
+				error();
+		i++;
+	}
+	if (execve(buf[i], cmd, envp) == -1)
+		error();
+	//execve(buf[i], cmd, envp);
 }
 
 void error()
@@ -63,3 +82,4 @@ void error()
 	perror("ERROR");
 	exit(EXIT_FAILURE);
 }
+
