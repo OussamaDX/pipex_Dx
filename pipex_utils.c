@@ -6,80 +6,71 @@
 /*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 13:45:18 by ooussaad          #+#    #+#             */
-/*   Updated: 2022/12/19 22:28:05 by ooussaad         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:29:13 by ooussaad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
 /*find path function*/
-char	**find_path(char **envp)
+char	*find_path(char *cmd, char **envp)
 {
 	char	**paths;
 	char	*path;
+	char	*road;
 	int		i;
-	char	*part_path;
 
 	i = 0;
-	while (envp[i]) //first tape is searche for path // i use strnstr if not found path word she should be return 0
-	{
-		if (ft_strnstr(envp[i], "PATH=", 5) == 0)
-			path = envp[i] + 5;
+	while (ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
-	}
-	paths = ft_split(path, ':');
+	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (paths[i])
 	{
-		paths[i] = ft_strjoin(paths[i],"/");
+		path = ft_strjoin(paths[i], "/");
+		road = ft_strjoin(path, cmd);
+		if (access(road, F_OK) == 0)
+			return road;
 		i++;
 	}
-	return (paths);
+	i = 0;
+	while (paths[i])
+		free(paths[i++]);
+	free(paths);
+	return (0);
 }
 
 /* Function that take the command and send it to find_path
  before executing it. */
-void excute_cmd1(char **argv,char **envp)
+void excute_cmd(char *argv,char **envp)
 {
 	int i = 0;
-	char **cmd = ft_split (argv[2],' ');
-	char **buf = find_path(envp);
-	while (buf[i])
+	char **cmd = ft_split (argv, ' ');
+	char *buf = find_path(cmd[0], envp);
+	if (!buf)
 	{
-		buf[i] = ft_strjoin(buf[i], cmd[0]);
-			if (access(buf[i], X_OK) == 0)
-				break;
-			else
-				error();
-		i++;
+		write (1, "no command found", 16);
+		while (cmd[i])
+			free(cmd[i++]);
+		free(cmd);
+		exit(1);
 	}
-	if (execve(buf[i], cmd, envp) == -1)
-		error();
-	// execve(buf[i], cmd, envp);
-}
-
-void excute_cmd2(char **argv,char **envp)
-{
-	int i = 0;
-	char **cmd = ft_split (argv[3],' ');
-	char **buf = find_path(envp);
-	while (buf[i])
-	{
-		buf[i] = ft_strjoin(buf[i], cmd[0]);
-			if (access(buf[i], X_OK) == 0)
-				break;
-			else
-				error();
-		i++;
-	}
-	if (execve(buf[i], cmd, envp) == -1)
-		error();
-	//execve(buf[i], cmd, envp);
+	execve(buf, cmd, envp);
 }
 
 void error()
 {
 	perror("ERROR");
 	exit(EXIT_FAILURE);
+}
+
+void ft_putstr(char *str)
+{
+	int i = 0;
+	while (str[i])
+    {
+		write (1,str + i,1);
+		i++;
+	}
 }
 
