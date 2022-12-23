@@ -34,29 +34,29 @@ what is pid_t ?
 |process to be replaced with a new program, with newly initialized|
 |stack, heap, and (initialized and uninitialized) data segments.  |
 |-----------------------------------------------------------------|
-|# child_process(f1, cmd1);										         |
-|// add protection if dup2() < 0								            |
+|# child_process(f1, cmd1);					  |					         
+|// add protection if dup2() < 0				  |				            
 |// dup2 close stdin, f1 becomes the new stdin                    |
 |dup2(f1, STDIN_FILENO); // we want f1 to be execve() input       |
-																                  |___
+								  |___								                
 |dup2(end[1], STDOUT_FILENO); // we want end[1] to be execve() stdout |
 |close(end[0]) # --> always close the end of the pipe you don't use,  |
 |                   as long as the pipe is open, the other end will   |
 |                    be waiting for some kind of input and will not   |
-|                   be able to finish its process    				       |
-|close(f1)  														                |
+|                   be able to finish its process    	              |
+|close(f1)  							      |						               
 |// execve function for each possible path (see below)                |
-|exit(EXIT_FAILURE);												                |
+|exit(EXIT_FAILURE);			      	    	              |
 |_____________________________________________________________________|
-|So processes are organized in a hierarchy, with: 					  |
-|																	              |
-|parent processes that create child processes,						  |_____________________________________________
+|So processes are organized in a hierarchy, with: 		      |
+|								      |								              
+|parent processes that create child processes,			      |_____________________________________________
 |child processes that are created by their parent process and can in turn create child processes of their own.|
 For example, when we input a command into the shell like ls, the shell creates a child process whose job it is|
 |to execute the ls program. If the shell executed the ls program directly without first creating a child,     |
 |the shell process would be overwritten by the ls program and we wouldn’t be able to continue using our shell…|
 |___________________________________________________________________________________________ _________________|
-|Memory Duplicated but Not Shared																			  |_______________________________________________
+|Memory Duplicated but Not Shared																			 
 |As we’ve seen, a child process is an exact copy of its parent process. When a child is created, it is identical to its parent in every way.|________
 | It has the same code, the same open file descriptors, the same data stored in memory, etc. But the fact that this memory is identical does not mean|
 |it is shared between the two processes. If the parent process changes the value of one of its variables after creating the child, the child process |
