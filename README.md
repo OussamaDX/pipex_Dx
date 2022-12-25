@@ -11,7 +11,11 @@
 # What is a Pipe in Linux?
 
 
-![pipe2](https://user-images.githubusercontent.com/98095867/208128711-00d7dbd6-78dd-4c4e-983a-38c1bf663054.jpeg)
+</p>
+<p align="center">
+<img src="https://64.media.tumblr.com/tumblr_m2rdijRXvp1qksjbgo1_500.gifv" width="500">
+<p/>
+
 
 **The Pipe** is a command in Linux that lets you use two or more commands such that output of one command serves as input to the next. In short, the output of each process directly as input to the next one like a pipeline. The symbol ‘|’ denotes a pipe.
 
